@@ -1,5 +1,7 @@
 //
 
+/* eslint-disable react/no-array-index-key */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -14,12 +16,16 @@ class Board extends React.Component {
 	}
 
 	generateBoxes = () => {
-		return  [ ...Array(this.props.boxes).keys() ]
+		return [ ...Array(this.props.boxes).keys() ]
 			.map(() => this.generateColor());
 	}
 
 	generateColor = () => {
-		return [this.generateRandom(), this.generateRandom(), this.generateRandom()];
+		return {
+			r: this.generateRandom(),
+			g: this.generateRandom(),
+			b: this.generateRandom()
+		};
 	}
 
 	generateRandom = () => {
@@ -28,6 +34,11 @@ class Board extends React.Component {
 
 	changeColor = (id) => {
 		console.log('changeColor; id ', id);
+		this.setState(prevState => {
+			const newBoxes = [...prevState.boxes];
+			newBoxes[id] = this.generateColor();
+			return ({ boxes: newBoxes });
+		});
 	}
 
 	render() {
@@ -35,7 +46,10 @@ class Board extends React.Component {
 
 		return (
 			<div className="board">
-				<Box id={1} color="red" changeColor={this.changeColor} />
+				{this.state.boxes.map((box, id) => (
+					<div key={id}>
+						<Box id={id} color={box} changeColor={this.changeColor} />
+					</div>))}
 			</div>
 		);
 	}

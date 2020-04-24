@@ -1,11 +1,18 @@
 //
 
-/* eslint-disable react/prefer-stateless-function */
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/interactive-supports-focus */
 
 import React from 'react';
 import PropTypes from 'prop-types';
 
 class Box extends React.Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			hover: false
+		};
+	}
 
 	onClick = () => {
 		console.log('Box::onClick; id ', this.props.id);
@@ -14,13 +21,20 @@ class Box extends React.Component {
 
 	render() {
 		console.log('Box::render(); this.props ', this.props);
-		const { id, color, changeColor } = this.props;
+		const { color } = this.props;
+		const rgb = `rgb(${color.r}, ${color.g}, ${color.b})`;
+		const style = { 
+			backgroundColor: rgb
 
+		}
 		return (
-			<div style={{backgroundColor: "red"}} className="box">
-				<button type="button" className="box--button" onClick={this.onClick}>
-					abc
-				</button>
+			<div
+				style={style}
+				className="box"
+				onClick={this.onClick}
+				role="button"
+			>
+				{rgb}
 			</div>
 		);
 	}
@@ -28,7 +42,11 @@ class Box extends React.Component {
 
 Box.propTypes = {
 	id: PropTypes.number.isRequired,
-	color: PropTypes.string.isRequired,
+	color: PropTypes.shape({
+		r: PropTypes.number.isRequired,
+		g: PropTypes.number.isRequired,
+		b: PropTypes.number.isRequired
+	}).isRequired,
 	changeColor: PropTypes.func.isRequired
 }
 
