@@ -23,7 +23,7 @@ class Box extends React.Component {
 	}
 
 	render() {
-		console.log('Box::render(); this.props ', this.props);
+		// console.log('Box::render(); this.props ', this.props);
 		const { color } = this.props;
 		const { hover } = this.state;
 

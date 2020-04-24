@@ -22,12 +22,8 @@ require('dotenv').config();
  * Define folders
  */
 
-const SCSS_FOLDER = path.resolve(__dirname, './scss');
-// const FONTS_FOLDER = path.resolve(__dirname, './scss/fonts');
 const ICONS_FOLDER = path.resolve(__dirname, './icons');
 const DIST_FOLDER = path.resolve(__dirname, './dist');
-const INCLUDE_SCSS_FOLDER = path.resolve(__dirname, './src');
-const INCLUDE_CSS_FOLDER = path.resolve(__dirname, './src');
 
 /*
  * Define plugins
@@ -140,12 +136,7 @@ const plugins = [
 	HTMLPlugin,
 
 	extractSCSSBundle, // create css bundle from scss
-	extractCSSBundle, // allow import file.css
-
-	// copy images
-	new CopyWebpackPlugin([{ from: 'src/images', to: 'images' }], {
-		debug: copyWebpackPluginOptions
-	})
+	extractCSSBundle // allow import file.css
 ];
 
 if (PRODUCTION_MODE) {
