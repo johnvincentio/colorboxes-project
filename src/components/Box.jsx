@@ -18,9 +18,9 @@ class Box extends React.Component {
 		this.setState(prevState => ({ hover: !prevState.hover }));
 	}
 
-	onClick = () => {
-		this.props.changeColor(this.props.id);
-	}
+	// onClick = () => {
+	// 	this.props.changeColor(this.props.id);
+	// }
 
 	render() {
 		// console.log('Box::render(); this.props ', this.props);
@@ -33,7 +33,7 @@ class Box extends React.Component {
 			<div
 				style={{ backgroundColor: rgb }}
 				className="box"
-				onClick={this.onClick}
+				onClick={() => this.props.changeColor(this.props.id)}
 				role="button"
 				onMouseEnter={this.toggleHover}
 				onMouseLeave={this.toggleHover}
