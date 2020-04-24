@@ -14,27 +14,36 @@ class Box extends React.Component {
 		};
 	}
 
+	toggleHover = () => {
+		this.setState(prevState => ({ hover: !prevState.hover }));
+	}
+
 	onClick = () => {
-		console.log('Box::onClick; id ', this.props.id);
 		this.props.changeColor(this.props.id);
 	}
 
 	render() {
 		console.log('Box::render(); this.props ', this.props);
 		const { color } = this.props;
-		const rgb = `rgb(${color.r}, ${color.g}, ${color.b})`;
-		const style = { 
-			backgroundColor: rgb
+		const { hover } = this.state;
 
-		}
+		const rgb = `rgb(${color.r}, ${color.g}, ${color.b})`;
+		const style = hover ? { color: `black`, backgroundColor: `white` } : { color: `white`, backgroundColor: rgb }
 		return (
 			<div
-				style={style}
+				style={{ backgroundColor: rgb }}
 				className="box"
 				onClick={this.onClick}
 				role="button"
+				onMouseEnter={this.toggleHover}
+				onMouseLeave={this.toggleHover}
 			>
-				{rgb}
+				<div
+					style={style}
+					className="box--text"
+				>
+					{hover && rgb}
+				</div>
 			</div>
 		);
 	}

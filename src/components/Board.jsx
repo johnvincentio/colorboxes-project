@@ -33,7 +33,6 @@ class Board extends React.Component {
 	}
 
 	changeColor = (id) => {
-		console.log('changeColor; id ', id);
 		this.setState(prevState => {
 			const newBoxes = [...prevState.boxes];
 			newBoxes[id] = this.generateColor();
@@ -42,8 +41,6 @@ class Board extends React.Component {
 	}
 
 	render() {
-		console.log('Board::render(); this.state ', this.state, ' this.props ', this.props);
-
 		return (
 			<div className="board">
 				{this.state.boxes.map((box, id) => (

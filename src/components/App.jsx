@@ -8,7 +8,7 @@ const App = () => {
 	return (
 		<div className="app">
 			<Board />
-			{/* <Board boxes={20} /> */}
+			<Board boxes={20} />
 		</div>
 	);
 }

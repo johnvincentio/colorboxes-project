@@ -1,21 +1,15 @@
 // 
 
 .box {
-	// margin: 20px 0;
-	// border: 1px solid blue;
-	padding: 20px;
+	width: 200px;
+	height: 200px;
 
-	width: 100px;
-	height: 100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 
-	color: white;
-
-	@include opacity(0.9);
-	&:hover {
-		color: black;
+	&--text {
+		padding: 5px;
 		background-color: white;
-		@include transition(all 0.3s);
-		cursor: pointer;
-		@include opacity(1);
 	}
 }
