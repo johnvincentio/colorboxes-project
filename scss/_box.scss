@@ -1,0 +1,17 @@
+// 
+
+.box {
+	// margin: 20px 0;
+	border: 1px solid blue;
+	padding: 20px;
+
+	width: 100px;
+	height: 100px;
+
+	&:hover {
+		background-color: $dark-primary-color;
+		@include transition(all 0.3s);
+		cursor: pointer;
+		@include opacity(1);
+	}
+}
